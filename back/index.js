@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 import { validationResult } from 'express-validator';
 import { registerValidator } from "./validations/auth.js"
 import UserModel from './models/user.js'
+import { checkAuth } from './utils/checkAuth.js'
 
 mongoose.connect('mongodb+srv://admin:3KvKcAQmY2VGI4FJ@cluster0.9l3gh.mongodb.net/blog?retryWrites=true&w=majority')
   .then(() => {
@@ -22,21 +23,35 @@ app.get('/', (req, res) => {
   res.send('Hello word')
 })
 
-
-app.post('/auth/login', (req, res) => {
+// авторизация нового пользователя
+app.post('/auth/login', async (req, res) => {
   const { email, password } = req.body;
-  // генерируем токен для возвращения клиенту
-  const token = jwt.sign({
-    email,
-    fullName: 'Вася ИВАНОВ',
-  }, "secret123")
-  console.log(req.body)
-  res.json({
-    success: true,
-    token
-  })
+  try {
+
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: 'Пользователь или пароль не верны' });
+    }
+
+    const isValidPass = await bcrypt.compare(password, user._doc.passwordHash);
+    console.log(isValidPass);
+    if (!isValidPass) {
+      return res.status(404).json({ message: 'Пользователь или пароль не верны' });
+    }
+
+    // создаем signIn token
+    const token = jwt.sign({ _id: user._id }, 'secret123', { expiresIn: '30d' })
+    const { passwordHash, ...userData } = user._doc;
+    res.json({ userData, token })
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({
+      message: "Не удалось авторизоваться"
+    });
+  }
 })
 
+// регистрация нового пользователя
 app.post('/auth/register', registerValidator, async (req, res) => {
   try {
     const { body: { email, fullName, avatarUrl, password } } = req;
@@ -65,10 +80,19 @@ app.post('/auth/register', registerValidator, async (req, res) => {
     res.json({ ...user._doc, token })
   } catch (err) {
     console.error(err)
-    res.json({
+    res.status(500).json({
       message: err
-    })
+    });
+  }
+})
 
+
+// получение справочной информации о пользователе
+app.get('/auth/me', () => {
+
+  try {
+
+  } catch (err) {
 
   }
 })
