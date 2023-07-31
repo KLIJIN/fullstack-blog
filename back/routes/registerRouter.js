@@ -4,8 +4,8 @@ import { validationResult } from 'express-validator';
 const registerRouter = express.Router();
 import UserModel from '../models/user.js'
 
-registerRouter.route("/")
-  .post(async (req, res) => {
+registerRouter
+  .post("/", async (req, res) => {
     try {
       const { body: { email, fullName, avatarUrl, password } } = req;
       const errors = validationResult(req)

@@ -4,10 +4,10 @@ import bcrypt from 'bcrypt';
 const loginRouter = express.Router();
 
 import UserModel from '../models/user.js';
-import {sekretKey} from '../index.js';
+import { sekretKey } from '../server.js';
 
-loginRouter.route("/")
-  .post(async (req, res) => {
+loginRouter
+  .post('/', async (req, res) => {
     const { email, password } = req.body;
     try {
       const user = await UserModel.findOne({ email });

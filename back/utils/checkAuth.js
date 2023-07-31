@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { sekretKey } from '../index.js';
+import { sekretKey } from '../server.js';
 
 
 export const checkAuth = async (req, res, next) => {
@@ -13,7 +13,10 @@ export const checkAuth = async (req, res, next) => {
   try {
     const decoded = await jwt.verify(token, sekretKey);
     console.log(decoded);
+
+    // добавление в req нового поля
     req.userId = decoded._id;
+
     next();
   } catch (e) {
     console.log(e);
