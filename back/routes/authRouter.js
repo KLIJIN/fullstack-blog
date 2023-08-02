@@ -1,6 +1,7 @@
 import express from "express";
-const authRouter = express.Router();
 import UserModel from '../models/user.js'
+
+const authRouter = express.Router();
 
 authRouter.post('/', async (req, res) => {
   const { userId } = req;

@@ -1,10 +1,10 @@
 import express from "express";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-const loginRouter = express.Router();
-
 import UserModel from '../models/user.js';
 import { sekretKey } from '../server.js';
+
+const loginRouter = express.Router();
 
 loginRouter
   .post('/', async (req, res) => {

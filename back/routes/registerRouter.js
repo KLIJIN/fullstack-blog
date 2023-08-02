@@ -1,17 +1,13 @@
 import express from "express";
 import jwt from 'jsonwebtoken';
-import { validationResult } from 'express-validator';
-const registerRouter = express.Router();
 import UserModel from '../models/user.js'
+
+const registerRouter = express.Router();
 
 registerRouter
   .post("/", async (req, res) => {
     try {
       const { body: { email, fullName, avatarUrl, password } } = req;
-      const errors = validationResult(req)
-      if (!errors.isEmpty()) {
-        return res.status(400).json(errors.array())
-      }
 
       // шифрование пароля
       const salt = await bcrypt.genSalt(10);

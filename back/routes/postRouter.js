@@ -2,31 +2,10 @@ import express from "express";
 import PostModel from "../models/post.js";
 import { postValidator } from "../validations/post.js";
 import { checkAuth } from "../utils/checkAuth.js";
+
 const postRouter = express.Router();
 
 postRouter
-  // создание статьи
-  .post('/', checkAuth, postValidator, async (req, res) => {
-    const { title, text, imageUrl, tags } = req.body;
-    console.log(req.body, req.userId);
-    try {
-      // создаем документ
-      const doc = new PostModel({
-        title,
-        text,
-        tags,
-        imageUrl,
-        user: req.userId,
-      });
-      const post = await doc.save();
-      res.send(post);
-    } catch (err) {
-      console.error(err)
-      res.status(500).json({
-        message: "Не удалось создать пост",
-      });
-    }
-  })
   // получение всех статей
   .get('/', async (req, res) => {
     try {
@@ -64,6 +43,28 @@ postRouter
       console.error(err);
       res.status(500).json({
         message: "Не удалось получить статью",
+      });
+    }
+  })
+  // создание статьи
+  .post('/', checkAuth, postValidator, async (req, res) => {
+    const { title, text, imageUrl, tags } = req.body;
+    console.log(req.body, req.userId);
+    try {
+      // создаем документ
+      const doc = new PostModel({
+        title,
+        text,
+        tags,
+        imageUrl,
+        user: req.userId,
+      });
+      const post = await doc.save();
+      res.send(post);
+    } catch (err) {
+      console.error(err)
+      res.status(500).json({
+        message: "Не удалось создать пост",
       });
     }
   })
