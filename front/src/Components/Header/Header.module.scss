@@ -1,0 +1,65 @@
+.root {
+  background-color: #fff;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 30px;
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  background-color: black;
+  color: #fff;
+  font-weight: 700;
+  line-height: 35px;
+  text-transform: uppercase;
+  letter-spacing: 0.15px;
+  border-radius: 5px;
+  padding: 0 10px;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #4361ee;
+  }
+}
+
+.buttons {
+  button {
+    margin-left: 10px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.buttonPanel {
+  display: flex;
+  gap: 15px;
+}
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  box-sizing: border-box;
+  margin-right: auto;
+  display: block;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+@media (min-width: 600px) {
+  .container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}

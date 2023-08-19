@@ -56,5 +56,5 @@ app.use('/upload', checkAuth, upload.single('image'), (req, res) => {
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
-  console.log('Сервер запущен');
+  console.log(`Сервер запущен. порт ${PORT}`);
 });
