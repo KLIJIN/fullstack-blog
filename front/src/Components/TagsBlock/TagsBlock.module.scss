@@ -5,10 +5,8 @@
 .list {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0 0 8px 14px;
   position: relative;
-  padding-top: 8px;
-  padding-bottom: 8px;
 }
 
 .itemButton {
@@ -46,7 +44,7 @@
 }
 
 .itemIcon {
-  min-width: 56px;
+  min-width: 25px;
   color: rgba(0, 0, 0, 0.54);
   flex-shrink: 0;
   display: inline-flex;
