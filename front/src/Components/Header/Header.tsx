@@ -17,14 +17,14 @@ function Header() {
           </a>
           <div className={styles.buttons}>
             {isAuth ? (
-              <>
+              <div className={styles.buttonPanel}>
                 <a href="/posts/create">
                   <Button variant="contained">Написать статью</Button>
                 </a>
                 <Button onClick={onClickLogout} variant="contained" color="error">
                   Выйти
                 </Button>
-              </>
+              </div>
             ) : (
               <div className={styles.buttonPanel}>
                 <a href="/login">

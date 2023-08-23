@@ -5,4 +5,5 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   size?: 'small' | 'medium' | 'large';
   color?: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning';
   variant?: 'text' | 'outlined' | 'contained';
+  fullWidth?: boolean;
 }
