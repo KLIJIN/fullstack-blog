@@ -7,4 +7,5 @@ export interface CommentsBlockProps {
     text: string;
   }[];
   isLoading: boolean;
+  children?: React.ReactNode;
 }

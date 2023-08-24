@@ -11,7 +11,7 @@ export interface PostProps {
   viewsCount: number;
   commentsCount: number;
   tags: string[];
-  isEditable: boolean;
+  isEditable?: boolean;
   isFullPost?: boolean;
   children?: React.ReactNode;
 }

@@ -5,7 +5,7 @@ import { CommentsBlockProps } from './types';
 import styles from './CommentsBlock.module.scss';
 
 
-function CommentsBlock({ items, isLoading = true }: CommentsBlockProps) {
+function CommentsBlock({ items, children, isLoading = true }: CommentsBlockProps) {
   return (
     <SideBlock title="Комментарии">
       <ul className={styles.list}>
@@ -34,6 +34,7 @@ function CommentsBlock({ items, isLoading = true }: CommentsBlockProps) {
           </li>
         ))}
       </ul>
+      {children}
     </SideBlock>
   )
 }

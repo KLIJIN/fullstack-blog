@@ -3,14 +3,17 @@ import styles from './Button.module.scss';
 import clsx from 'clsx';
 
 
-const Button: React.FC<ButtonProps> = ({ children, variant = "contained", color, fullWidth }) => {
+const Button: React.FC<ButtonProps> = ({ children, variant = "contained",
+  color, fullWidth, className }) => {
 
   return (
-    <div className={clsx(styles.root, styles[variant],
+    <button className={clsx(styles.root, styles[variant],
       fullWidth && styles.fullWidth,
-      color && styles[color])}>
+      className && className,
+      color && styles[color])}
+    >
       {children}
-    </div>
+    </button>
   )
 }
 
