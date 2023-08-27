@@ -22,7 +22,8 @@ loginRouter
       }
 
       // создаем signIn token
-      const token = jwt.sign({ _id: user._id }, sekretKey, { expiresIn: '30d' })
+      const token = jwt.sign({ _id: user._id }, sekretKey, { expiresIn: '30d' });
+      
       const { passwordHash, ...userData } = user._doc;
       res.json({ userData, token })
     } catch (err) {

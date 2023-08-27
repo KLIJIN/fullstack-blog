@@ -1,5 +1,6 @@
 import React, { useCallback, useState, useMemo } from 'react'
 import SimpleMDE from 'react-simplemde-editor';
+import { Link } from 'react-router-dom';
 import Button from '@/Components/Button';
 
 import 'easymde/dist/easymde.min.css';
@@ -7,15 +8,16 @@ import styles from './AddPost.module.scss';
 
 
 
+
 function AddPost() {
 
-  const imageUrl = '';
+  // const imageUrl = '';
   const [value, setValue] = useState<string>('');
   // const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">("write");
 
   const handleChangeFile = () => { };
 
-  const onClickRemoveImage = () => { };
+  // const onClickRemoveImage = () => { };
 
   const onChange = useCallback((value: string) => {
     setValue(value);
@@ -69,9 +71,9 @@ function AddPost() {
         <Button variant="contained" className={styles.buttonCadel}>
           Опубликовать
         </Button>
-        <a href="/">
+        <Link to="/">
           <Button >Отмена</Button>
-        </a>
+        </Link>
       </div>
 
     </div>

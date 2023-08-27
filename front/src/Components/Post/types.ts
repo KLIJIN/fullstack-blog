@@ -1,6 +1,6 @@
 
 export interface PostProps {
-  id: number;
+  id: string;
   title: string;
   imageUrl: string;
   user: {

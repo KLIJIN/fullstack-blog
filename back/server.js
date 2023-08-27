@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import multer from 'multer';
+import cors from 'cors'
 import { registerValidator, loginValidator } from "./validations/index.js";
 import { checkAuth, checkValidationErrors } from "./utils/index.js";
 import { loginRouter, registerRouter, authRouter, postRouter } from "./routes/index.js";
@@ -28,8 +29,10 @@ const upload = multer({ storage });
 
 
 const app = express();
+app.use(cors());
 app.use(express.json()); // чтение body запросов
 app.use('/uploads', express.static('uploads')); // доступ к статичным файлам
+
 
 app.get('/', (req, res) => {
   res.send('Hello word')
