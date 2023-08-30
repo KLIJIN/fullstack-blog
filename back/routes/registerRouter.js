@@ -1,6 +1,8 @@
 import express from "express";
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 import UserModel from '../models/user.js'
+import { sekretKey } from '../server.js';
 
 const registerRouter = express.Router();
 
@@ -24,7 +26,7 @@ registerRouter
       const user = await doc.save();
 
       // создаем signIn token
-      const token = jwt.sign({ _id: user._id }, 'secret123', { expiresIn: '30d' })
+      const token = jwt.sign({ _id: user._id }, sekretKey, { expiresIn: '30d' })
 
       res.json({ ...user._doc, token })
     } catch (err) {

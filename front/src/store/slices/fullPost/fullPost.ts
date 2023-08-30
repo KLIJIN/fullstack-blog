@@ -4,33 +4,32 @@ import { FullPost } from "./types";
 
 const initialState: FullPost = {
   data: null,
-  status: 'loading',
-}
+  status: "loading"
+};
 
 const slice = createSlice({
-  name: 'fullPost',
+  name: "fullPost",
   initialState,
   // синхронные экшены
   reducers: {},
   // асинхронные экшены
   extraReducers: (builder) => {
     builder.addCase(getFullPost.pending, (state) => {
-      console.log('getFullPost.pending');
-      state.status = 'loading';
+      console.log("getFullPost.pending");
+      state.status = "loading";
     });
     builder.addCase(getFullPost.rejected, (state) => {
-      console.log('getPosts.rejected ошибка');
+      console.log("getPosts.rejected ошибка");
       state.data = null;
-      state.status = 'error';
+      state.status = "error";
     });
     builder.addCase(getFullPost.fulfilled, (state, action) => {
-      console.log('getFullPost.fulfilled успешно', action);
+      console.log("getFullPost.fulfilled успешно", action);
       const { doc, user } = action.payload;
       state.data = { ...doc, user };
-      state.status = 'loaded'
+      state.status = "loaded";
     });
   }
 });
 
-
-export default slice.reducer
+export default slice.reducer;

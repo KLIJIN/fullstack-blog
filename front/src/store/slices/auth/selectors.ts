@@ -4,4 +4,4 @@ import { RootState } from "@/store";
 export const selectAuthData = (state: RootState) => state.auth;
 
 /** проверка наличия данных о пользователе */
-export const selectIsAuth = (state: RootState) => Boolean(state.auth.data);
+export const selectIsAuth = (state: RootState) => Boolean(state.auth.data.userData);

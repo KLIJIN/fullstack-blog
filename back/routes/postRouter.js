@@ -24,7 +24,7 @@ postRouter
   // создание статьи
   .post('/', checkAuth, postValidator, async (req, res) => {
     const { title, text, imageUrl, tags } = req.body;
-    console.log(req.body, req.userId);
+    // console.log(req.body, req.userId);
 
     try {
       // создаем документ
@@ -47,12 +47,12 @@ postRouter
   // Удаление одной статьи
   .delete('/:id', checkAuth, async (req, res) => {
     const postId = req.params.id;
-    console.log('73 postId', postId);
+    console.log('50 postId', postId);
     try {
       const filter = { _id: postId };
 
       const doc = await PostModel.findOneAndDelete(filter);
-      console.log('78 doc', doc);
+      console.log('55 doc', doc);
       if (!doc) {
         return res.status(404).json({
           message: 'Статья не найдена',

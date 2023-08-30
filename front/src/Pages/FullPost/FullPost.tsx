@@ -1,16 +1,13 @@
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { useAppDispatch } from '@/store';
-import { getFullPost } from '@/store/slices/fullPost/requests';
-import { selectFullPost } from '@/store/slices/fullPost/selectors';
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
+import { useAppDispatch } from "@/store";
+import { getFullPost } from "@/store/slices/fullPost/requests";
+import { selectFullPost } from "@/store/slices/fullPost/selectors";
 import AddComment from "@/Components/AddComment";
 import CommentsBlock from "@/Components/CommentsBlock";
 import Post from "@/Components/Post";
-
-
-
-
 
 function FullPost() {
   const dispatch = useAppDispatch();
@@ -33,12 +30,12 @@ function FullPost() {
     tags,
     viewsCount,
     user,
-    createdAt,
+    createdAt
   } = data;
 
   return (
     <div>
-      {data &&
+      {data && (
         <Post
           id={_id}
           title={title}
@@ -50,35 +47,33 @@ function FullPost() {
           tags={tags}
           isFullPost
         >
-          <p>
-            {text}
-          </p>
+          <ReactMarkdown children={text} />
         </Post>
-      }
+      )}
       <CommentsBlock
         items={[
           {
             user: {
               fullName: "Вася Пупкин",
-              avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+              avatarUrl: "https://mui.com/static/images/avatar/1.jpg"
             },
-            text: "Это тестовый комментарий 555555",
+            text: "Это тестовый комментарий 555555"
           },
           {
             user: {
               fullName: "Иван Иванов",
-              avatarUrl: "https://mui.com/static/images/avatar/2.jpg",
+              avatarUrl: "https://mui.com/static/images/avatar/2.jpg"
             },
-            text: "When displaying three lines or more, the avatar is not aligned at the top. You should set the prop to align the avatar at the top",
-          },
+            text:
+              "When displaying three lines or more, the avatar is not aligned at the top. You should set the prop to align the avatar at the top"
+          }
         ]}
         isLoading={false}
       >
         <AddComment />
       </CommentsBlock>
     </div>
-  )
+  );
 }
-
 
 export default FullPost;

@@ -58,6 +58,7 @@ function Login() {
             {...register('email', { required: "Укажите почту" })}
           />
           <input
+            type='password'
             className={styles.input}
             placeholder={errors.password?.message || "Укажите пароль"}
             {...register('password', { required: "Укажите пароль" })}

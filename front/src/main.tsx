@@ -38,6 +38,10 @@ const router = createBrowserRouter([
         element: <AddPost />,
       },
       {
+        path: '/posts/:id/edit',
+        element: <AddPost />,
+      },
+      {
         path: '/posts/:id',
         element: <FullPost />,
       },

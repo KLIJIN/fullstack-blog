@@ -7,7 +7,6 @@ const getPosts = createAsyncThunk('fetchPosts', async () => {
   return response.data;
 });
 
-
 /* получение всех тэгов */
 const getTags = createAsyncThunk('fetchTags', async () => {
   const response = await axios.get('/posts/tags');

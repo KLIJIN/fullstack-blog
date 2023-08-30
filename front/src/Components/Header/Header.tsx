@@ -1,13 +1,12 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { selectIsAuth } from '@/store/slices/auth/selectors';
-import Button from '@/Components/Button';
-import { useAppDispatch } from '@/store';
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { selectIsAuth } from "@/store/slices/auth/selectors";
+import Button from "@/Components/Button";
+import { useAppDispatch } from "@/store";
 
-import styles from './Header.module.scss';
-import { logout } from '@/store/slices/auth/auth';
-
+import styles from "./Header.module.scss";
+import { logout } from "@/store/slices/auth/auth";
 
 function Header() {
   const isAuth = useSelector(selectIsAuth);
@@ -15,10 +14,9 @@ function Header() {
   const onClickLogout = () => {
     if (window.confirm("Вы хотите выйти?")) {
       dispatch(logout());
-      window.localStorage.removeItem('token');
+      window.localStorage.removeItem("token");
     }
   };
-
 
   return (
     <div className={styles.root}>
@@ -30,10 +28,14 @@ function Header() {
           <div className={styles.buttons}>
             {isAuth ? (
               <div className={styles.buttonPanel}>
-                <Link to="/posts/create">
+                <Link to="/add-posts">
                   <Button variant="contained">Написать статью</Button>
                 </Link>
-                <Button onClick={onClickLogout} variant="contained" color="error">
+                <Button
+                  onClick={onClickLogout}
+                  variant="contained"
+                  color="error"
+                >
                   Выйти
                 </Button>
               </div>
@@ -51,8 +53,7 @@ function Header() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-
 
 export default Header;
