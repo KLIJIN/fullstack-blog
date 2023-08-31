@@ -1,9 +1,9 @@
 import express from "express";
-import UserModel from '../models/user.js'
+import UserModel from "../models/user.js";
 
 const authRouter = express.Router();
 
-authRouter.post('/', async (req, res) => {
+authRouter.post("/", async (req, res) => {
   const { userId } = req;
   try {
     const user = await UserModel.findById(userId);

@@ -12,7 +12,6 @@ import { selectAuthData } from "@/store/slices/auth/selectors";
 
 import styles from "./Home.module.scss";
 
-
 function Home() {
   const dispatch = useAppDispatch();
   const { posts, tags } = useSelector(selectPosts);
@@ -33,7 +32,6 @@ function Home() {
         <PostBlock className={styles.main}>
           {postList &&
             postList.map((el) => {
-              console.log(el.user._id, userData?._id);
               return (
                 <Post
                   id={el._id}
@@ -56,7 +54,7 @@ function Home() {
             items={[
               {
                 user: {
-                  fullName: "Вася Пупкин",
+                  fullName: "Вася Петров",
                   avatarUrl: "https://mui.com/static/images/avatar/1.jpg"
                 },
                 text: "Это тестовый комментарий"

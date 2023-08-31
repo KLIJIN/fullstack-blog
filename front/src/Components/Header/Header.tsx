@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "@/store";
 import { selectIsAuth } from "@/store/slices/auth/selectors";
 import Button from "@/Components/Button";
-import { useAppDispatch } from "@/store";
 
 import styles from "./Header.module.scss";
 import { logout } from "@/store/slices/auth/auth";

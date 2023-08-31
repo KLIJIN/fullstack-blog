@@ -1,16 +1,14 @@
-import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from 'react-redux';
-import { useAppDispatch } from '@/store';
-import { selectIsAuth } from '@/store/slices/auth/selectors';
-import { setNewUser } from '@/store/slices/auth/requests';
-import Button from '@/Components/Button';
+import { useSelector } from "react-redux";
+import Button from "@/Components/Button";
+import { useAppDispatch } from "@/store";
+import { selectIsAuth } from "@/store/slices/auth/selectors";
+import { setNewUser } from "@/store/slices/auth/requests";
 
-import styles from './Registration.module.scss';
-import { RegisterForm } from './types';
-
-
+import styles from "./Registration.module.scss";
+import { RegisterForm } from "./types";
 
 function Registration() {
   const navigate = useNavigate();
@@ -19,13 +17,12 @@ function Registration() {
 
   const {
     register,
-    handleSubmit,
-    // formState: { errors },
+    handleSubmit
   } = useForm({
     defaultValues: {
-      fullName: 'fullName',
+      fullName: "fullName",
       email: "test112@test.ru",
-      password: "12345",
+      password: "12345"
     },
     mode: "onChange"
   });
@@ -36,14 +33,12 @@ function Registration() {
     }
   }, [isAuth, navigate]);
 
-
   const onSubmit = async (values: RegisterForm) => {
     const data = await dispatch(setNewUser(values));
-    console.log(values);
     if (!data.payload) {
-      alert('Не удалось зарегистрировать Учетную Запись');
+      alert("Не удалось зарегистрировать Учетную Запись");
     } else {
-      window.localStorage.setItem('token', data.payload.token);
+      window.localStorage.setItem("token", data.payload.token);
     }
   };
 
@@ -51,34 +46,31 @@ function Registration() {
     <div className={styles.root}>
       <div className={styles.container}>
         <h5 className={styles.title}>Создание аккаунта</h5>
-
-        <form onSubmit={handleSubmit(onSubmit)}  >
+        <form onSubmit={handleSubmit(onSubmit)}>
           <input
             className={styles.input}
             placeholder="Полное имя"
-            {...register('fullName', { required: "Укажите Логин" })}
+            {...register("fullName", { required: "Укажите Логин" })}
           />
           <input
             className={styles.input}
-            type='email'
+            type="email"
             placeholder="E-Mail"
-            {...register('email', { required: "Укажите почту" })}
+            {...register("email", { required: "Укажите почту" })}
           />
           <input
             className={styles.input}
-            type='password'
+            type="password"
             placeholder="Пароль"
-            {...register('password', { required: "Укажите пароль" })}
+            {...register("password", { required: "Укажите пароль" })}
           />
           <Button variant="contained" fullWidth type="submit">
             Зарегистрироваться
           </Button>
         </form>
-
       </div>
     </div>
-  )
+  );
 }
-
 
 export default Registration;

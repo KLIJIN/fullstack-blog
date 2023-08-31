@@ -5,20 +5,18 @@ import React, {
   useMemo,
   useRef
 } from "react";
-import { selectIsAuth } from "@/store/slices/auth/selectors";
-import { setFile } from "@/store/slices/fullPost/requests";
 import { useSelector } from "react-redux";
-import axios from "@/axios";
-import { useAppDispatch } from "@/store";
 import SimpleMDE from "react-simplemde-editor";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Button from "@/Components/Button";
+import axios from "@/axios";
+import { useAppDispatch } from "@/store";
+import { selectIsAuth } from "@/store/slices/auth/selectors";
+import { setFile } from "@/store/slices/fullPost/requests";
 import { getTags } from "@/shared/utils";
+import Button from "@/Components/Button";
 
 import "easymde/dist/easymde.min.css";
 import styles from "./AddPost.module.scss";
-
-
 
 function AddPost() {
   const { id } = useParams();
@@ -32,6 +30,7 @@ function AddPost() {
   const inputFile = useRef<HTMLInputElement>(null);
   // const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">("write");
 
+  const isEditable = useMemo(() => Boolean(id), [id]);
   const options = useMemo(
     () => ({
       spellChecker: false,
@@ -48,20 +47,14 @@ function AddPost() {
     []
   );
 
-
-  const isEditable = useMemo(() => Boolean(id), [id]);
-
   const handleChangeFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    debugger;
     try {
       if (e.target.files) {
-        debugger;
         const formData = new FormData();
         const file = e.target.files[0];
         formData.append("image", file);
         const { payload } = await dispatch(setFile(formData));
         if (payload.url) {
-          // debugger;
           await setImageUrl(`http://localhost:8000${payload.url}`);
         }
       }
@@ -72,10 +65,9 @@ function AddPost() {
 
   useEffect(() => {
     if (isEditable) {
-      axios.get(`/posts/${id}`)
+      axios
+        .get(`/posts/${id}`)
         .then((res) => {
-          // eslint-disable-next-line no-debugger
-          // debugger;
           const { title, text, imageUrl, tags } = res.data.doc;
           setTitle(title);
           setText(text);
@@ -84,10 +76,9 @@ function AddPost() {
         })
         .catch((err) => {
           alert(err);
-        })
+        });
     }
   }, []);
-
 
   useEffect(() => {
     if (!window.localStorage.getItem("token")) {
@@ -101,23 +92,19 @@ function AddPost() {
 
   const onSumbit = async () => {
     try {
-      debugger;
       const fields = {
         title,
         text,
         tags: getTags(tags),
-        imageUrl: imageUrl,
+        imageUrl: imageUrl
       };
-      debugger;
       if (!isEditable) {
         const { data } = await axios.post("/posts", fields);
         navigate(`/posts/${data._id}`);
       } else {
-        console.log("AAAAAAAAAAAAAAAAAAAA");
         axios.patch(`/posts/${id}`, fields);
         navigate(`/posts/${id}`);
       }
-
     } catch (err) {
       console.log(err);
     }
@@ -127,6 +114,13 @@ function AddPost() {
     setImageUrl("");
   };
 
+  const changeTitleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
+
+  const changeTagsHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTags(e.target.value);
+  };
 
   return (
     <div className={styles.root}>
@@ -143,11 +137,7 @@ function AddPost() {
 
       {imageUrl && (
         <div>
-          <img
-            className={styles.img}
-            src={imageUrl}
-            alt="Uploaded"
-          />
+          <img className={styles.img} src={imageUrl} alt="Uploaded" />
           <div>
             <Button size="large" color="error" onClick={onClickRemoveImage}>
               Удалить картинку
@@ -161,9 +151,7 @@ function AddPost() {
           className={styles.input}
           placeholder="заголовок статьи"
           value={title}
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
+          onChange={changeTitleHandler}
         />
       </div>
 
@@ -172,9 +160,7 @@ function AddPost() {
           className={styles.tags}
           placeholder="Тэги"
           value={tags}
-          onChange={(e) => {
-            setTags(e.target.value);
-          }}
+          onChange={changeTagsHandler}
         />
       </div>
 

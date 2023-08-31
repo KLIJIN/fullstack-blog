@@ -1,13 +1,10 @@
+import { useEffect } from "react";
+import { Outlet } from "react-router-dom";
+import { useAppDispatch } from "@/store";
+import { getUserData } from "@/store/slices/auth/requests";
+import Header from "@/Components/Header";
 
-import { useEffect } from 'react';
-import { Outlet } from 'react-router-dom'
-import { useAppDispatch } from '@/store';
-import { getUserData } from './store/slices/auth/requests';
-import Header from '@/Components/Header'
-
-import './App.css'
-
-
+import "./App.css";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -19,11 +16,11 @@ function App() {
   return (
     <>
       <Header />
-      <div className='container'>
+      <div className="container">
         <Outlet />
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

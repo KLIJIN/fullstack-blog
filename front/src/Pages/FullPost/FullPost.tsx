@@ -54,10 +54,10 @@ function FullPost() {
         items={[
           {
             user: {
-              fullName: "Вася Пупкин",
+              fullName: "Вася Петров",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg"
             },
-            text: "Это тестовый комментарий 555555"
+            text: "тестовый комментарий"
           },
           {
             user: {
@@ -65,7 +65,7 @@ function FullPost() {
               avatarUrl: "https://mui.com/static/images/avatar/2.jpg"
             },
             text:
-              "When displaying three lines or more, the avatar is not aligned at the top. You should set the prop to align the avatar at the top"
+              "When displaying three lines or more, the avatar is not aligned at the top"
           }
         ]}
         isLoading={false}

@@ -1,11 +1,13 @@
-import React from 'react';
-import SideBlock from '@/Components/SideBlock';
-import { CommentsBlockProps } from './types';
+import SideBlock from "@/Components/SideBlock";
+import { CommentsBlockProps } from "./types";
 
-import styles from './CommentsBlock.module.scss';
+import styles from "./CommentsBlock.module.scss";
 
-
-function CommentsBlock({ items, children, isLoading = true }: CommentsBlockProps) {
+function CommentsBlock({
+  items,
+  children,
+  isLoading = true
+}: CommentsBlockProps) {
   return (
     <SideBlock title="Комментарии">
       <ul className={styles.list}>
@@ -25,9 +27,7 @@ function CommentsBlock({ items, children, isLoading = true }: CommentsBlockProps
               </div>
             ) : (
               <div className={styles.comment}>
-                <div className={styles.name}>
-                  {obj.user.fullName}
-                </div>
+                <div className={styles.name}>{obj.user.fullName}</div>
                 <div className={styles.text}>{obj.text}</div>
               </div>
             )}
@@ -36,8 +36,7 @@ function CommentsBlock({ items, children, isLoading = true }: CommentsBlockProps
       </ul>
       {children}
     </SideBlock>
-  )
+  );
 }
-
 
 export default CommentsBlock;

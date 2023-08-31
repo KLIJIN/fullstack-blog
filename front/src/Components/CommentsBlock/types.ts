@@ -1,8 +1,8 @@
 export interface CommentsBlockProps {
   items: {
     user: {
-      fullName: string,
-      avatarUrl: string,
+      fullName: string;
+      avatarUrl: string;
     };
     text: string;
   }[];

@@ -15,7 +15,6 @@
   flex-direction: column;
 }
 
-
 .title {
   margin: 0;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
@@ -27,38 +26,6 @@
   font-weight: bold;
   margin-bottom: 30px;
 }
-
-// .input {
-//   width: 100%;
-//   display: inline-flex;
-//   flex-direction: column;
-//   position: relative;
-//   min-width: 0;
-//   padding: 0;
-//   margin: 0;
-//   border: 1px solid #0000001c;
-//   border-radius: 5px;
-//   width: 100%;
-
-//   letter-spacing: inherit;
-//   color: currentColor;
-
-//   box-sizing: content-box;
-//   background: none;
-//   height: 1.4375em;
-//   margin: 0;
-//   -webkit-tap-highlight-color: transparent;
-//   display: block;
-//   min-width: 0;
-//   animation-duration: 10ms;
-//   padding: 16.5px 14px;
-//   outline: none;
-//   margin-bottom: 20px;
-
-//   &:focus-visible {
-//     border: 1px solid blue;
-//   }
-// }
 
 .input {
   border: 1px solid #0000001c;

@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes } from "react";
 
 export interface TabsProps {
   labelList: string[];

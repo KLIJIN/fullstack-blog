@@ -1,1 +1,1 @@
-export { default } from './TagsBlock'
+export { default } from './TagsBlock';
